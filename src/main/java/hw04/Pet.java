@@ -21,8 +21,6 @@ public class Pet {
     int age;
     int TrickLevel;
     String[] habits;
-    //StringBuilder toString = new StringBuilder();
-    String habits1 = Arrays.toString(habits);
 
     public void eat() {
         System.out.println("I am eating!");
@@ -38,6 +36,6 @@ public class Pet {
 
     public String toString() {
         return String.format("%s{nickname =  %s, age = %d, TrickLevel = %d, habits = %s}",
-                species, nickname, age, TrickLevel, habits1.toString());
+                species, nickname, age, TrickLevel, Arrays.toString(habits));
     }
 }
