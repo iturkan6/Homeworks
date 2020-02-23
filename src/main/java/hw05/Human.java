@@ -79,6 +79,7 @@ public class Human {
 
     public void greetPet(){
         System.out.printf("Hello %s", PET.getNickname());
+        System.out.println(Arrays.toString(schedule));
     }
 
     public void describePet(){
@@ -92,7 +93,8 @@ public class Human {
     }
 
     public String toString() {
+
         return String.format("Human {name = %s, year = %d, iq = %d, schedule = %s }",
-                name, year, iq, Arrays.toString(schedule));
+                name, year, iq, Arrays.deepToString(schedule));
     }
 }

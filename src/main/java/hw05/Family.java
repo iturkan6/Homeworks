@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class Family {
     private Human mother;
     private Human father;
-    private Human [] children;
-    int count = 0;
+    private Human [] children = new Human[1];
+    private int count = 0;
     Human human;
 
     public Family(Human mother, Human father, Human [] children){
@@ -47,17 +47,20 @@ public class Family {
     @Override
     public String toString() {
         return String.format("Family{mother=%s, father=%s, children=%s, count=%d}",
-                mother, father, Arrays.toString(children), count);
+                mother, father, Arrays.toString(children), this.count);
     }
 
-    public void addChild(Human a){
-
-//        for (int i = 0; i <2 ; i++) {
-//            children[i] = a;
-//        }
-////        System.out.println(Arrays.toString(children));
+    public void addChild(Human a) {
+        this.children = Arrays.copyOf(this.children, this.children.length+1);
+        this.children[children.length-1] = a;
+        this.count++;
     }
-    public void deleteChild(){
+    public boolean deleteChild() {
+        int c = this.children.length;
+        this.children = Arrays.copyOf(this.children, c - 1);
+        this.count--;
+        return (this.children.length < c);
 
     }
+
 }
