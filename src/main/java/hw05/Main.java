@@ -17,9 +17,9 @@ public class Main {
         System.out.println(PET.toString());
 
         Family family = new Family(new Human("Marry", "Smith", 27, 100),
-                new Human("Pob", "Smith", 27, 100), new Human[]{ch});
+                new Human("Rob", "Smith", 27, 100), new Human[]{ch});
 
-        family.addChild(new Human("Mark", "smith", 1, 1));
+        family.addChild(new Human("Mark", "Smith", 1, 1));
         System.out.println(family.deleteChild());
         System.out.println(family.toString());
 

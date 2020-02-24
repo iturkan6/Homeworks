@@ -1,6 +1,7 @@
 package hw05;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Family {
     private Human mother;
@@ -55,6 +56,22 @@ public class Family {
         this.children[children.length-1] = a;
         this.count++;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Family family = (Family) o;
+        return mother.equals(family.mother) &&
+                father.equals(family.father) &&
+                human.equals(family.human);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mother, father, human);
+    }
+
     public boolean deleteChild() {
         int c = this.children.length;
         this.children = Arrays.copyOf(this.children, c - 1);
