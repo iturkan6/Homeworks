@@ -3,24 +3,26 @@ package hw04;
 import java.util.Arrays;
 
 public class Pet {
+    String species;
+    String nickname;
+    int age;
+    int trickLevel;
+    String[] habits;
+
     public Pet(){}
+
     Pet(String species, String nickname){
         this.species = species;
         this.nickname = nickname;
     }
-    Pet(String species, String nickname, int age, int TrickLevel, String[] habits){
+
+    Pet(String species, String nickname, int age, int trickLevel, String[] habits){
         this.species = species;
         this.nickname = nickname;
         this.age = age;
-        this.TrickLevel = TrickLevel;
+        this.trickLevel = trickLevel;
         this.habits = habits;
-
     }
-    String species;
-    String nickname;
-    int age;
-    int TrickLevel;
-    String[] habits;
 
     public void eat() {
         System.out.println("I am eating!");
@@ -36,6 +38,6 @@ public class Pet {
 
     public String toString() {
         return String.format("%s{nickname =  %s, age = %d, TrickLevel = %d, habits = %s}",
-                species, nickname, age, TrickLevel, Arrays.toString(habits));
+                species, nickname, age, trickLevel, Arrays.toString(habits));
     }
 }

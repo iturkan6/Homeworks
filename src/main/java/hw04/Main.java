@@ -13,6 +13,7 @@ public class Main {
         humanC.PET = PET;
         System.out.println( humanC.toString());
         humanC.describePet();
+        humanC.greetPet();
         PET.eat();
         PET.respond();
         PET.foul();

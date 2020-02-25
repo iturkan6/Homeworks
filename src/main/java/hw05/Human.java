@@ -8,8 +8,8 @@ public class Human {
     private int year;
     private int iq;
     private String [] [] schedule;
-    Pet PET = new Pet();
-    Family family;
+    private Pet PET = new Pet();
+    private Family family;
 
     public Human(String name, String surname, int year, int iq){
         this.name = name;
@@ -26,6 +26,7 @@ public class Human {
     }
 
     public Human(){}
+
 
     public Family getFamily() {
         return family;
