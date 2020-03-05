@@ -6,17 +6,30 @@ import java.util.Objects;
 public class Family {
     private Human mother;
     private Human father;
-    private Human [] children = new Human[1];
+    private Human [] children = new Human[0];
     private int count = 2;
+    private Pet PET;
+    //private Pet pet;
 
-    public Family(Human mother, Human father, Human [] children){
+
+    public Family(Human mother, Human father, Pet PET){
         this.father = father;
         this.mother = mother;
-        this.children = children;
+        this.mother.setFamily(this);
+        this.father.setFamily(this);
+        this.PET = PET;
     }
 
     Family(){}
 
+
+    public Pet getPET() {
+        return PET;
+    }
+
+    public void setPET(Pet PET) {
+        this.PET = PET;
+    }
 
     public Human getMother() {
         return mother;
@@ -44,14 +57,15 @@ public class Family {
 
     @Override
     public String toString() {
-        return String.format("Family{mother=%s, father=%s, children=%s, count=%d}",
-                mother, father, Arrays.toString(children), this.count);
+        return String.format("Family{mother=%s, father=%s, children=%s, Pet =%s, count=%d}",
+                mother, father, Arrays.toString(children),PET, this.count);
     }
 
     public void addChild(Human a) {
         this.children = Arrays.copyOf(this.children, this.children.length+1);
+        a.setFamily(this);
         this.children[children.length-1] = a;
-        this.count += this.children.length;
+        this.count = 2 + this.children.length;
     }
 
     @Override

@@ -8,8 +8,9 @@ public class Human {
     private int year;
     private int iq;
     private String [] [] schedule;
-    private Pet PET = new Pet();
     private Family family;
+    //private Pet PET = new Pet();
+
 
     public Human(String name, String surname, int year, int iq){
         this.name = name;
@@ -34,14 +35,6 @@ public class Human {
 
     public void setFamily(Family family) {
         this.family = family;
-    }
-
-    public Pet getPET() {
-        return PET;
-    }
-
-    public void setPET(Pet PET) {
-        this.PET = PET;
     }
 
     public String getName() {
@@ -77,18 +70,17 @@ public class Human {
     }
 
     public void greetPet(){
-        System.out.printf("Hello %s", PET.getNickname());
-        System.out.println(Arrays.toString(schedule));
+        System.out.printf("Hello %s\n", family.getPET().getNickname());
     }
 
     public void describePet(){
         String sly;
-        if (PET.getTrickLevel() > 50 ) {
+        if (family.getPET().getTrickLevel() > 50 ) {
             sly = "very sly ";
         }else{
             sly = "almost not sly ";
         }
-        System.out.printf("I have %s, he is %d years old, he is %s\n", PET.getSpecies(), PET.getAge(), sly);
+        System.out.printf("I have %s, he is %d years old, he is %s\n", family.getPET().getSpecies(), family.getPET().getAge(), sly);
     }
 
     public String toString() {
