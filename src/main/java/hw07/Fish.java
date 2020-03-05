@@ -1,6 +1,6 @@
 package hw07;
 
-public class Fish extends Pet {
+public class Fish extends Pet implements Foul{
     public Fish(String nickname, int age, int TrickLevel, String[] habits) {
         super(nickname, age, TrickLevel, habits);
         this.species = Species.Fish;
@@ -12,4 +12,8 @@ public class Fish extends Pet {
         System.out.printf("I am %s\n", nickname);
     }
 
+    @Override
+    public void foul() {
+
+    }
 }

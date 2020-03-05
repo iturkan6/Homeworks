@@ -25,4 +25,43 @@ public abstract class Pet {
     }
     public abstract void respond();
 
+    public Species getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(Species species) {
+        this.species = species;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getTrickLevel() {
+        return TrickLevel;
+    }
+
+    public void setTrickLevel(int trickLevel) {
+        TrickLevel = trickLevel;
+    }
+
+    public String[] getHabits() {
+        return habits;
+    }
+
+    public void setHabits(String[] habits) {
+        this.habits = habits;
+    }
 }

@@ -1,4 +1,4 @@
-package hw05;
+package hw06;
 
 import java.util.Arrays;
 
@@ -26,7 +26,6 @@ public class Human {
     }
 
     public Human(){}
-
 
     public Family getFamily() {
         return family;
@@ -69,7 +68,7 @@ public class Human {
     }
 
     public void greetPet(){
-        System.out.printf("Hello %s\n", family.getPET().getNickname());
+        System.out.printf("Hello %s", family.getPET().getNickname());
     }
 
     public void describePet(){
@@ -86,5 +85,10 @@ public class Human {
 
         return String.format("Human {name = %s, year = %d, iq = %d, schedule = %s }",
                 name, year, iq, Arrays.deepToString(schedule));
+    }
+
+    @Override
+    protected void finalize(){
+        System.out.println("I removed");
     }
 }

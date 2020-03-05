@@ -1,6 +1,6 @@
 package hw07;
 
-public class RoboCat extends Pet {
+public class RoboCat extends Pet implements Foul{
 
     public RoboCat(String nickname, int age, int TrickLevel, String[] habits) {
         super(nickname, age, TrickLevel, habits);
@@ -13,4 +13,8 @@ public class RoboCat extends Pet {
     }
 
 
+    @Override
+    public void foul() {
+
+    }
 }
