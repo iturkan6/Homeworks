@@ -1,9 +1,9 @@
 package hw08;
 
 public enum Species {
+    Fish,
     Dog,
-    Cat,
-    Frog,
-    GoldFish
-
+    RoboCat,
+    DomesticCat,
+    UNKNOWN
 }

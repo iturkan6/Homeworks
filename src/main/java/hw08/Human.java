@@ -9,11 +9,8 @@ public class Human {
     private String surname;
     private int year;
     private int iq;
-//    private String [] [] schedule;
     private Family family;
-     HashMap<DayOfWeek, String> schedule;
-    //private Pet PET = new Pet();
-
+    private HashMap<DayOfWeek, String> schedule;
 
     public Human(String name, String surname, int year, int iq){
         this.name = name;
@@ -27,15 +24,6 @@ public class Human {
         this.year = year;
         this.iq = iq;
       this.schedule = schedule;
-//       HashMap<String, String> schedule = new HashMap <String, String>();
-//        schedule.put( DayOfWeek.Sunday.name(), "do homework");
-//        schedule.put(DayOfWeek.Monday.name(), "go to course");
-//        schedule.put(DayOfWeek.Tuesday.name(), "go to academy");
-//        schedule.put(DayOfWeek.Wednesday.name(), "watch a film");
-//        schedule.put(DayOfWeek.Thursday.name(), "read a book");
-//        schedule.put(DayOfWeek.Friday.name(), "go to gym");
-//        schedule.put(DayOfWeek.Saturday.name(), "rest");
-//        System.out.println(schedule);
     }
 
     public Human(){}

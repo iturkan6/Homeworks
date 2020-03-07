@@ -2,12 +2,12 @@ package hw08;
 
 import java.util.HashSet;
 
-public class Pet {
-    private Species species;
-    private String nickname;
-    private int age;
-    private int TrickLevel;
-    private HashSet<String> habits = new HashSet<String>();
+public abstract class Pet {
+    protected Species species;
+    protected String nickname;
+    protected int age;
+    protected int TrickLevel;
+    protected HashSet<String> habits = new HashSet<String>();
 
     public Pet(){}
     public Pet(Species species, String nickname){
@@ -15,8 +15,8 @@ public class Pet {
         this.nickname = nickname;
     }
 
-    public Pet(Species species, String nickname, int age, int TrickLevel, HashSet <String> habits){
-        this.species = species;
+    public Pet(String nickname, int age, int TrickLevel, HashSet <String> habits){
+        this.species = Species.UNKNOWN;
         this.nickname = nickname;
         this.age = age;
         this.TrickLevel = TrickLevel;
@@ -80,4 +80,5 @@ public class Pet {
         return String.format("%s{nickname =  %s, age = %d, TrickLevel = %d, habits = %s}",
                 species, nickname, age, TrickLevel, habits);
     }
+
 }

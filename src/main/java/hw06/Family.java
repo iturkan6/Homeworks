@@ -2,17 +2,13 @@ package hw06;
 
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class Family {
 
     private Human mother;
     private Human father;
     private Human[] children = new Human[0];
-    private int count = 2;
     private Pet PET;
-   private boolean c = false;
-    private int index;
 
     public Family(Human mother, Human father, Human []children, Pet PET){
         this.father = father;
@@ -63,14 +59,14 @@ public class Family {
                 mother, father, Arrays.toString(children), PET);
     }
 
-    public void addChild(Human a) {
+    public void addChild(Human child) {
         this.children = Arrays.copyOf(this.children, this.children.length+1);
-        a.setFamily(this);
-        this.children[children.length-1] = a;
+        this.children[children.length-1] = child;
+        child.setFamily(this);
     }
 
-
     public boolean deleteChild(int index) {
+        boolean c = false;
         if(index < this.children.length){
         for ( ; index < this.children.length-1; index++) {
             this.children[index] = this.children[++index];
@@ -78,28 +74,31 @@ public class Family {
             this.children = Arrays.copyOf(this.children, this.children.length - 1);
             c = true;
         }
-//        int c = this.children.length;
-
         return c;
     }
 
+    public boolean deleteChild(Human child){
+        boolean r = false;
+        for (int i = 0; i <this.children.length; i++) {
+            if (child.getName().equals(this.children[i].getName()) &&
+                    child.getSurname().equals(this.children[i].getSurname()) &&
+                    child.getYear() == this.children[i].getYear()){
+                for (int j = i; j < children.length-1; j++) {
+                    this.children[j] = this.children[++j];
+                    }
+                r = true;
+                this.children = Arrays.copyOf(this.children, this.children.length-1);
+            }
+        }
+        return r;
+    }
+
     public int countFamily(){
+        int count;
         return count = 2 + children.length;
     }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Family family = (Family) o;
-        return mother.equals(family.mother) &&
-                father.equals(family.father);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mother, father);
+    public boolean equal(Human chh1, Human chh2){
+        return chh1.equals(chh2);
     }
 
     @Override

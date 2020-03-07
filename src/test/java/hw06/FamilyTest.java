@@ -19,8 +19,8 @@ private Family family;
         Family t1 = new Family(new Human("Marry", "Smith", 27, 100),
                 new Human("Rob", "Smith", 27, 100),new Human[]{},
                 new Pet(Species.Dog, "Lola", 2, 75, new String[]{"Sleep", "Eat"}));
-        String t2 = "Family{mother = Human {name = Marry, year = 27, iq = 100, schedule = null }," +
-                " father = Human {name = Rob, year = 27, iq = 100, schedule = null }, children = [], " +
+        String t2 = "Family{mother = Human {name = Marry, surname = Smith, year = 27, iq = 100, schedule = null }," +
+                " father = Human {name = Rob, surname = Smith, year = 27, iq = 100, schedule = null }, children = [], " +
                 "pet = Dog{nickname =  Lola, age = 2, TrickLevel = 75, habits = [Sleep, Eat]}}";
         assertEquals(t1.toString(), t2);
     }
@@ -57,17 +57,30 @@ private Family family;
     }
 
     @Test
-    void deleteChild1() {
+    void deleteChildI1() {
         family.addChild(new Human("sss", "ddd", 2, 12));
         boolean c1 = family.deleteChild(0);
         assertTrue(c1);
     }
 
     @Test
-    void deleteChild2(){
+    void deleteChildI2() {
         family.addChild(new Human("sss", "ddd", 2, 12));
-        boolean c1 = family.deleteChild(1);
-        assertFalse(c1);
+        boolean c2 = family.deleteChild(1);
+        assertFalse(c2);
+    }
+    @Test
+    void deleteChildC1() {
+        family.addChild(new Human ("Anna", "Smith", 2, 5));
+        boolean c3 = family.deleteChild(new Human("Anna", "Smith", 2, 5));
+        assertTrue(c3);
+    }
+
+    @Test
+    void deleteChildC2() {
+        family.addChild(new Human ("Anna", "Smith", 2, 5));
+        boolean c4 = family.deleteChild(new Human("Michael", "Smith", 2, 5));
+        assertFalse(c4);
     }
 
     @Test

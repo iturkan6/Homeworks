@@ -21,7 +21,7 @@ class FamilyTest {
     @Test
     void testToStringF() {
         HashSet<Pet> PET = new HashSet<>();
-        PET.add(new Pet(Species.Dog,"Lola", 2, 75, new HashSet<String>(Arrays.asList("Sleep", "Eat"))));
+        PET.add(new Dog("Lola", 2, 75, new HashSet<String>(Arrays.asList("Sleep", "Eat"))));
         Family t1 = new Family(new Human("Marry", "Smith", 27, 100),
                 new Human("Rob", "Smith", 27, 100),new ArrayList<Human>(), PET);
         String t2 = "Family{mother = Human {name = Marry, year = 27, iq = 100, schedule = null }," +
@@ -29,6 +29,7 @@ class FamilyTest {
                 "Pet = [Dog{nickname =  Lola, age = 2, TrickLevel = 75, habits = [Sleep, Eat]}]}";
         assertEquals(t1.toString(), t2);
     }
+
     @Test
     void testToStringH() {
         Human h1 = new Human("Marry", "Smith", 27, 100);
@@ -38,7 +39,7 @@ class FamilyTest {
 
     @Test
     void testToStringP() {
-        Pet p1 = new Pet(Species.Dog, "Lola", 2, 75, new HashSet<>(Arrays.asList("Sleep", "Eat")));
+        Pet p1 = new Dog("Lola", 2, 75, new HashSet<>(Arrays.asList("Sleep", "Eat")));
         String p2 = "Dog{nickname =  Lola, age = 2, TrickLevel = 75, habits = [Sleep, Eat]}";
         assertEquals(p1.toString(), p2);
     }
@@ -81,4 +82,5 @@ class FamilyTest {
         int count2 = 2;
         assertEquals(count, count2);
     }
+
 }

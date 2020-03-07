@@ -83,8 +83,8 @@ public class Human {
 
     public String toString() {
 
-        return String.format("Human {name = %s, year = %d, iq = %d, schedule = %s }",
-                name, year, iq, Arrays.deepToString(schedule));
+        return String.format("Human {name = %s, surname = %s, year = %d, iq = %d, schedule = %s }",
+                name, surname, year, iq, Arrays.deepToString(schedule));
     }
 
     @Override

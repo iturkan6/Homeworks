@@ -15,8 +15,10 @@ public class Main {
         schedule.put(DayOfWeek.Thursday, "read a book");
         schedule.put(DayOfWeek.Friday, "go to gym");
         schedule.put(DayOfWeek.Saturday, "rest");
+
         HashSet<Pet> PET = new HashSet<>();
-        PET.add(new Pet(Species.Dog,"Lola", 2, 75, new HashSet<String>(Arrays.asList("Sleep", "Eat"))));
+        PET.add(new Dog("Lola", 2, 75, new HashSet<String>(Arrays.asList("Sleep", "Eat"))));
+        PET.add(new DomesticCat("f", 4, 4, new HashSet<String>(Arrays.asList("Sleep", "Eat"))));
 
         Human ch = new Human("Bob", "Smith", 2, 15, schedule);
         Family family = new Family(new Human("Marry", "Smith", 27, 100),
