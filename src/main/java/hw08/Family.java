@@ -8,7 +8,7 @@ public class Family {
     private Human father;
     //private Human [] children = new Human[1];
     private int count = 2;
-    private HashSet<Pet> PET = new LinkedHashSet<Pet>();
+    private HashSet<Pet> PET = new HashSet<Pet>();
     private ArrayList<Human> children = new ArrayList<Human>();
     private boolean b = false;
 

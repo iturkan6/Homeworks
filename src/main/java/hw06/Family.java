@@ -93,8 +93,7 @@ public class Family {
     }
 
     public int countFamily(){
-        int count;
-        return count = 2 + children.length;
+        return 2 + children.length;
     }
     public boolean equal(Human chh1, Human chh2){
         return chh1.equals(chh2);

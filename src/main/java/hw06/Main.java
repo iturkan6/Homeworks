@@ -23,12 +23,12 @@ public class Main {
 
         family.addChild(new Human("Mark", "Smith", 1, 1));
         System.out.println(family.deleteChild(new Human("Bob", "Smith", 2, 15)));
-//        System.out.println(family.deleteChild(0));
+        System.out.println(family.deleteChild(0));
         System.out.println(family.toString());
         System.out.println(family.countFamily());
 
-//        for (int i = 0; i < 160000; i++) {
-//            Human c = new Human();
-//        }
+        for (int i = 0; i < 160000; i++) {
+            Human c = new Human();
+        }
     }
 }
