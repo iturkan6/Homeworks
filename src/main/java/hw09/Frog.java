@@ -1,7 +1,7 @@
 package hw09;
 
 
-import hw08.Pet;
+
 
 import java.util.HashSet;
 

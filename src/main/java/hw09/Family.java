@@ -7,20 +7,20 @@ public class Family {
     private Human mother;
     private Human father;
     //private Human [] children = new Human[1];
-    private int count = 2;
     private HashSet<Pet> PET = new LinkedHashSet<Pet>();
     private ArrayList<Human> children = new ArrayList<Human>();
     private boolean b = false;
+    private int count = 2;
     int index;
 
 
-    public Family(Human mother, Human father,  ArrayList <Human> children, HashSet<Pet> PET){
+    public Family(Human mother, Human father,  ArrayList <Human> children, HashSet<Pet> pet){
         this.father = father;
         this.mother = mother;
         this.mother.setFamily(this);
         this.father.setFamily(this);
         this.children = children;
-        this.PET = PET;
+        this.PET = pet;
     }
     public Family (Human mother, Human father){
         this.father = father;
@@ -29,7 +29,7 @@ public class Family {
 
     Family(){}
 
-    public HashSet<Pet> getPET() {
+    public HashSet<Pet> getPet() {
         return PET;
     }
 
@@ -101,12 +101,20 @@ public class Family {
         }
         return b;
     }
+    public boolean deleteChild(Human child){
+       boolean r = false;
+        if(child.equals(children)){
+            children.remove(child);
+            r = true;
+        }
+        return r;
+    }
 
     public int countFamily(){
         return count = 2 + children.size();
     }
 
     public void addPet(Pet pet){
-        getPET().add(pet);
+        getPet().add(pet);
     }
 }

@@ -1,8 +1,6 @@
 package hw09;
 
 
-
-
 import java.util.HashSet;
 
 public class RoboCat extends Pet implements Foul{

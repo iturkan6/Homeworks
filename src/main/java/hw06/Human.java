@@ -1,6 +1,7 @@
 package hw06;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Human {
 
@@ -85,6 +86,22 @@ public class Human {
 
         return String.format("Human {name = %s, surname = %s, year = %d, iq = %d, schedule = %s }",
                 name, surname, year, iq, Arrays.deepToString(schedule));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return year == human.year &&
+                iq == human.iq &&
+                name.equals(human.name) &&
+                surname.equals(human.surname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, year, iq);
     }
 
     @Override

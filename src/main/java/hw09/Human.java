@@ -2,6 +2,7 @@ package hw09;
 
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Human {
     private String name;
@@ -70,23 +71,39 @@ public class Human {
     }
 
     public void greetPet(){
-            System.out.printf("Hello %s\n", family.getPET().iterator().next().getNickname());
+            System.out.printf("Hello %s\n", family.getPet().iterator().next().getNickname());
         //System.out.println(Arrays.toString(schedule));
     }
 
     public void describePet(){
         String sly;
-        if ( family.getPET().iterator().next().getTrickLevel() > 50 ) {
+        if ( family.getPet().iterator().next().getTrickLevel() > 50 ) {
             sly = "very sly ";
         }else{
             sly = "almost not sly ";
         }
-        System.out.printf("I have %s, he is %d years old, he is %s\n", family.getPET().iterator().next().getSpecies(),
-                family.getPET().iterator().next().getAge(), sly);
+        System.out.printf("I have %s, he is %d years old, he is %s\n", family.getPet().iterator().next().getSpecies(),
+                family.getPet().iterator().next().getAge(), sly);
     }
 
     public String toString() {
         return String.format("Human {name = %s, year = %d, iq = %d, schedule = %s }",
                 name, year, iq, schedule);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return year == human.year &&
+                iq == human.iq &&
+                name.equals(human.name) &&
+                surname.equals(human.surname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, year, iq);
     }
 }

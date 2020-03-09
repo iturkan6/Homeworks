@@ -13,11 +13,11 @@ public class CollectionFamilyDAO implements FamilyDAO<Family>{
     }
 
     @Override
-    public Optional<Family> getFamilyByIndex(int index) {
+    public Family getFamilyByIndex(int index) {
         try {
-            return Optional.of(families.get(index));
-        }catch (NullPointerException ex) {
-            return Optional.empty();
+            return families.get(index);
+        }catch (IndexOutOfBoundsException ex) {
+            throw new RuntimeException("Index is wrong", ex);
         }
     }
 

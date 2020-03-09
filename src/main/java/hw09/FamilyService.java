@@ -3,42 +3,16 @@ package hw09;
 import java.util.*;
 
 public class FamilyService {
-    CollectionFamilyDAO cf = new CollectionFamilyDAO();
-    FamilyDAO fd = new FamilyDAO<Family>() {
+    FamilyDAO<Family> cf = new CollectionFamilyDAO();
 
-        @Override
-        public List<Family> getAllFamilies() {
-            return fd.getAllFamilies();
-        }
-
-        @Override
-        public Optional<Family> getFamilyByIndex(int index) {
-            return Optional.empty();
-        }
-
-        @Override
-        public boolean deleteFamily(int index) {
-            return false;
-        }
-
-        @Override
-        public boolean deleteFamily(Family family) {
-            return false;
-        }
-
-        @Override
-        public void saveFamily(Family family) {
-
-        }
-    };
     public void createNewFamily(Human mother, Human father){
-        fd.saveFamily(new Family(mother, father));
+        cf.saveFamily(new Family(mother, father));
     }
-    public void DisplayAllFamilies(){
-        System.out.println(fd.getAllFamilies());
+    public void displayAllFamilies(){
+        System.out.println(cf.getAllFamilies());
     }
     public void deleteFamilyByIndex(int index){
-        fd.deleteFamily(index);
+        cf.deleteFamily(index);
     }
 
     public void bornChild(Family family, String girlName, String boyName) {
@@ -47,7 +21,7 @@ public class FamilyService {
         if (c == 0) {
             family.addChild(new Human(boyName, family.getFather().getSurname(), 0, 0));
         } else if (c == 1) {
-            family.addChild(new Human(girlName, family.getFather().getSurname(), 0, 0));
+            family.addChild(new Human(girlName, family.getMother().getSurname(), 0, 0));
         }
     }
 
@@ -56,18 +30,18 @@ public class FamilyService {
     }
 
     public int count (){
-        return cf.families.size();
+        return cf.getAllFamilies().size();
     }
 
     public void getFamiliesBiggerThan(int number) {
-        for (Family c : cf.families) {
+        for (Family c : cf.getAllFamilies()) {
             if (c.getCount() > number) {
                 System.out.println(c);
             }
         }
     }
     public void getFamiliesLessThan(int number) {
-        for (Family c : cf.families) {
+        for (Family c : cf.getAllFamilies()) {
             if (c.getCount() < number) {
                 System.out.println(c);
             }
@@ -75,23 +49,33 @@ public class FamilyService {
     }
     public int countFamiliesWithMemberNumber(int number) {
         int s = 0;
-        for (Family c : cf.families) {
-            if (c.getCount() == number) {
+        for (Family c : cf.getAllFamilies()) {
+            if (c.countFamily() == number) {
                 s++;
             }
         }
         return s;
     }
     public Family getFamilyById(int index){
-        return cf.families.get(index);
+        return cf.getFamilyByIndex(index);
     }
     public void getPet(int index){
-        System.out.println(cf.families.get(index).getPET());
+        System.out.println(cf.getFamilyByIndex(index).getPet());
     }
     public void addPet(int index, Pet pet){
-        cf.families.get(index).addPet(pet);
+//        cf.families.get(index).addPet(pet);
+        cf.getFamilyByIndex(index).addPet(pet);
     }
     public HashSet<Pet> getPets(int index){
-        return cf.families.get(index).getPET();
+//        return cf.families.get(index).getPET();
+        return cf.getFamilyByIndex(index).getPet();
+    }
+    public void deleteAllChildrenOlderThen(int number){
+        for (Family c : cf.getAllFamilies()) {
+            for (Human b : c.getChildren())
+            if (b.getYear() == number){
+                c.deleteChild(b);
+            }
+        }
     }
 }

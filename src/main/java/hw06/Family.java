@@ -2,6 +2,7 @@ package hw06;
 
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Family {
 
@@ -80,9 +81,7 @@ public class Family {
     public boolean deleteChild(Human child){
         boolean r = false;
         for (int i = 0; i <this.children.length; i++) {
-            if (child.getName().equals(this.children[i].getName()) &&
-                    child.getSurname().equals(this.children[i].getSurname()) &&
-                    child.getYear() == this.children[i].getYear()){
+            if (child.equals(children[i])){
                 for (int j = i; j < children.length-1; j++) {
                     this.children[j] = this.children[++j];
                     }
@@ -104,5 +103,23 @@ public class Family {
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Family family = (Family) o;
+        return mother.equals(family.mother) &&
+                father.equals(family.father) &&
+                Arrays.equals(children, family.children) &&
+                Objects.equals(PET, family.PET);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(mother, father, PET);
+        result = 31 * result + Arrays.hashCode(children);
+        return result;
     }
 }
