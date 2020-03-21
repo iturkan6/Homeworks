@@ -1,20 +1,23 @@
-package hw09;
+package hw10;
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Objects;
 
 public class Family {
     private Human mother;
     private Human father;
     //private Human [] children = new Human[1];
     private HashSet<Pet> PET = new LinkedHashSet<Pet>();
-    private ArrayList<Human> children = new ArrayList<>();
+    private ArrayList<Human> children = new ArrayList<Human>();
     private boolean b = false;
     private int count = 2;
     int index;
 
 
-    public Family(Human mother, Human father,  ArrayList <Human> children, HashSet<Pet> pet){
+    public Family(Human mother, Human father, ArrayList <Human> children, HashSet<Pet> pet){
         this.father = father;
         this.mother = mother;
         this.mother.setFamily(this);

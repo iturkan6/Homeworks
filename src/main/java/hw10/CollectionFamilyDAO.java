@@ -1,11 +1,10 @@
-package hw09;
+package hw10;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class CollectionFamilyDAO implements FamilyDAO<Family>{
-    public List<Family> families = new ArrayList<>();
+public class CollectionFamilyDAO implements FamilyDAO<Family> {
+    public List<Family> families = new ArrayList<Family>();
 
     @Override
     public List<Family> getAllFamilies() {
@@ -39,17 +38,12 @@ public class CollectionFamilyDAO implements FamilyDAO<Family>{
             families.remove(family);
             r = true;
         }
-        return r;
+        return false;
     }
 
     @Override
     public void saveFamily(Family family) {
-        if (families.contains(family)){
-            Family family1 = families.get(families.indexOf(family));
-            family1 = family;
-        }else {
-            families.add(family);
-        }
+        families.add(family);
     }
 
 }

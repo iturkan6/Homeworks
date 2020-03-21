@@ -1,9 +1,8 @@
-package hw09;
+package hw10;
 
 import java.util.HashSet;
 
-
-public class FamilyController extends FamilyService{
+public class FamilyController extends FamilyService {
     FamilyService fs = new FamilyService();
 
     public void createNewFamily(Human mother, Human father){
@@ -24,8 +23,8 @@ public class FamilyController extends FamilyService{
         fs.adoptChild(family, child);
     }
 
-    public void countOfFamily(){
-        System.out.println(fs.count());
+    public int count (){
+        return fs.count();
     }
 
     public void getFamiliesBiggerThanNumber(int number) {

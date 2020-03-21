@@ -1,8 +1,11 @@
-package hw09;
+package hw10;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
 
 public class FamilyService {
     FamilyDAO<Family> cf = new CollectionFamilyDAO();
@@ -21,9 +24,9 @@ public class FamilyService {
         Random random = new Random();
         int c = random.nextInt(2);
         if (c == 0) {
-            family.addChild(new Human(boyName, family.getFather().getSurname(), 0, 0));
+            family.addChild(new Human(boyName, family.getFather().getSurname(), "21/03/2020", 0));
         } else if (c == 1) {
-            family.addChild(new Human(girlName, family.getMother().getSurname(), 0, 0));
+            family.addChild(new Human(girlName, family.getMother().getSurname(), "21/03/2020", 0));
         }
     }
 

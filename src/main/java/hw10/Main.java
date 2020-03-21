@@ -1,13 +1,12 @@
-package hw09;
+package hw10;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
         HashMap<DayOfWeek, String> schedule = new HashMap<DayOfWeek, String>();
         schedule.put( DayOfWeek.Sunday, "do homework");
@@ -22,10 +21,10 @@ public class Main {
         PET.add(new Dog("Lola", 2, 75, new HashSet<String>(Arrays.asList("Sleep", "Eat"))));
         PET.add(new DomesticCat("f", 4, 4, new HashSet<String>(Arrays.asList("Sleep", "Eat"))));
 
-        Human ch = new Human("Bob", "Smith", 2, 15, schedule);
-        Family smith = new Family(new Human("Marry", "Smith", 27, 100),
-                new Human("Rob", "Smith", 27, 100), new ArrayList<Human>(), PET);
-        Human Carl = new Human("Carl", "Ivanov", 13, 70);
+        Human ch = new Human("Bob", "Smith", "15/12/1992", 15, schedule);
+        Family smith = new Family(new Human("Marry", "Smith", "15/05/1995", 100),
+                new Human("Rob", "Smith", "13/05/1998", 100), new ArrayList<Human>(), PET);
+        Human Carl = new Human("Carl", "Ivanov", "13/03/2005", 70);
 
         smith.addChild(ch);
         System.out.println(ch.toString());
@@ -36,23 +35,23 @@ public class Main {
         smith.getPet().iterator().next().foul();
         System.out.println(smith.getPet().toString());
 
-        smith.addChild(new Human("Mark", "Smith", 1, 1));
+        smith.addChild(new Human("Mark", "Smith", "23/05/2004", 1));
         System.out.println(smith.deleteChild(5));
         System.out.println(smith.toString());
         System.out.println(smith.countFamily());
 
 
         FamilyController fc = new FamilyController();
-        fc.createNewFamily(new Human("Minie", "Mouse", 25, 80),
-                new Human("Mickey", "Mouse", 25, 100));
+        fc.createNewFamily(new Human("Minie", "Mouse", "12/01/1993", 80),
+                new Human("Mickey", "Mouse", "16/02/1992", 100));
         fc.bornChild(fc.getFamilyById(0), "Manie", "Michael");
-        fc.addPet(0, new RoboCat("Spike", 5, 99, new HashSet<>(Arrays.asList("Sleep", "Eat"))));
+        fc.addPet(0, new RoboCat("Spike", 5, 99, new HashSet<String>(Arrays.asList("Sleep", "Eat"))));
         System.out.println(fc.getFamilyById(0));
-        fc.createNewFamily(new Human("Katya", "Ivanova", 30, 58),
-                new Human("Petya", "Ivanov", 35, 70));
+        fc.createNewFamily(new Human("Katya", "Ivanova", "12/05/1999", 58),
+                new Human("Petya", "Ivanov", "16/11/1999", 70));
         fc.bornChild(fc.getFamilyById(1), "Ira", "Ivan");
         System.out.println(fc.getFamilyById(1));
-        fc.adoptChild(fc.getFamilyById(0), Carl );
+        fc.adoptChild(fc.getFamilyById(1), Carl );
         System.out.println(fc.getFamilyById(1));
         System.out.println(fc.countFamiliesWithMemberNumber(3));
         fc.getFamiliesBiggerThan(3);
@@ -62,7 +61,6 @@ public class Main {
         System.out.println(fc.getPets(0));
         fc.deleteFamilyByIndex(1);
         fc.displayAllFamilies();
-
     }
 
 }
