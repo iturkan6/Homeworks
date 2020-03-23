@@ -69,44 +69,9 @@ public class FamilyService {
         return cf.getFamilyByIndex(index).getPet();
     }
     public void deleteAllChildrenOlderThen(int number) {
-
-//        for (int i = 0; i < cf.getAllFamilies().size(); i++) {
-//        for (Family family : cf.getAllFamilies())
-////            Family family = cf.getFamilyByIndex(i);
-//            for (int j = 0; j < family.getChildren().size(); j++) {
-//                Human child = family.getChildren().get(j);
-//                if((LocalDateTime.now().getYear() -(Instant.ofEpochMilli(child.birthDate)
-//                .atZone(ZoneId.systemDefault())
-//                        .toLocalDateTime().getYear())) > number){
-//                    family.deleteChild(j);
-//                    cf.saveFamily(family);
-//                }
-//            }
-//        }
-//        for (Family family : cf.getAllFamilies()){
-//            for (Human child : family.getChildren()){
-//                if ((LocalDateTime.now().getYear() -(Instant.ofEpochMilli(child.birthDate).atZone(ZoneId.systemDefault())
-//                        .toLocalDateTime().getYear())) > number){
-//                    family.deleteChild(child);
-//                    cf.saveFamily(family);
-//                }
-//            }
-//        }
-//        for (Family family : cf.getAllFamilies()){
-//            List<Human> child = family.getChildren();
-//                child.removeIf(ch ->(LocalDateTime.now().getYear() -(Instant.ofEpochMilli(ch.birthDate).atZone(ZoneId.systemDefault())
-//                        .toLocalDateTime().getYear())) > number);
-//                cf.saveFamily(family);
-//        }
-
-            for (Family fam : cf.getAllFamilies()) {
-                for (int i = 0; i < fam.getChildren().size(); i++) {
-                    Human ch = fam.getChildren().get(i);
-                    if (LocalDateTime.now().getYear() -(Instant.ofEpochMilli(ch.birthDate)
-                            .atZone(ZoneId.systemDefault())
-                        .toLocalDateTime().getYear()) > number) fam.getChildren().remove(i);
-                }
-                cf.saveFamily(fam);
-            }
+        cf.getAllFamilies().forEach(family -> family.getChildren().removeIf(ch ->
+                (LocalDateTime.now().getYear() - Instant.ofEpochMilli(ch.birthDate)
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime().getYear()) > number));
    }
 }

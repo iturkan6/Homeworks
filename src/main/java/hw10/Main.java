@@ -61,6 +61,7 @@ public class Main {
         System.out.println(fc.getPets(0));
         fc.deleteFamilyByIndex(1);
         fc.displayAllFamilies();
+        fc.deleteAllChildrenOlderThen(3);
     }
 
 }

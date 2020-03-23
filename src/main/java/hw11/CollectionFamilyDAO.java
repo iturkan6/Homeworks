@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CollectionFamilyDAO implements FamilyDAO<Family> {
-    public List<Family> families = new ArrayList<Family>();
+    public List<Family> families = new ArrayList<>();
 
     @Override
     public List<Family> getAllFamilies() {
