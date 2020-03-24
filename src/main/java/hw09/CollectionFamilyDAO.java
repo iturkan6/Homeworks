@@ -45,8 +45,7 @@ public class CollectionFamilyDAO implements FamilyDAO<Family>{
     @Override
     public void saveFamily(Family family) {
         if (families.contains(family)){
-            Family family1 = families.get(families.indexOf(family));
-            family1 = family;
+            families.set(families.indexOf(family), family);
         }else {
             families.add(family);
         }

@@ -2,7 +2,6 @@ package hw10;
 
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -46,22 +45,25 @@ public class Main {
                 new Human("Mickey", "Mouse", "16/02/1992", 100));
         fc.bornChild(fc.getFamilyById(0), "Manie", "Michael");
         fc.addPet(0, new RoboCat("Spike", 5, 99, new HashSet<String>(Arrays.asList("Sleep", "Eat"))));
-        System.out.println(fc.getFamilyById(0));
+        fc.displayFamilyById(0);
         fc.createNewFamily(new Human("Katya", "Ivanova", "12/05/1999", 58),
                 new Human("Petya", "Ivanov", "16/11/1999", 70));
         fc.bornChild(fc.getFamilyById(1), "Ira", "Ivan");
-        System.out.println(fc.getFamilyById(1));
+        fc.displayFamilyById(1);
         fc.adoptChild(fc.getFamilyById(1), Carl );
-        System.out.println(fc.getFamilyById(1));
-        System.out.println(fc.countFamiliesWithMemberNumber(3));
-        fc.getFamiliesBiggerThan(3);
-        fc.getFamiliesLessThan(4);
+        fc.displayFamilyById(1);
+        fc.displayCountFamiliesWithMemberNumber(3);
+        fc.displayFamiliesBiggerThan(3);
+        fc.displayFamiliesLessThan(4);
         fc.addPet(1, new DomesticCat("Murzik", 7, 30, null));
-        System.out.println(fc.getFamilyById(1));
-        System.out.println(fc.getPets(0));
+        fc.displayFamilyById(1);
+        fc.displayPets(0);
         fc.deleteFamilyByIndex(1);
         fc.displayAllFamilies();
         fc.deleteAllChildrenOlderThen(3);
+        fc.getFamilyById(0).getFather().describeAge();
+        fc.displayCountOfFamily();
+        fc.displayPetByIndex(0);
     }
 
 }

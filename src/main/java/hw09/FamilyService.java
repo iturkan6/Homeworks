@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FamilyService {
-    FamilyDAO<Family> cf = new CollectionFamilyDAO();
+    private FamilyDAO<Family> cf = new CollectionFamilyDAO();
 
     public void createNewFamily(Human mother, Human father){
         cf.saveFamily(new Family(mother, father));
@@ -28,7 +28,6 @@ public class FamilyService {
     }
 
     public void adoptChild(Family family, Human child) {
-//        cf.getAllFamilies().iterator().next().addChild(child);
         int index = cf.getAllFamilies().indexOf(family);
         cf.getFamilyByIndex(index).getChildren().add(child);
     }
@@ -40,7 +39,7 @@ public class FamilyService {
     public List<Family> getFamiliesBiggerThan(int number) {
         List<Family> familyList = new ArrayList<>();
         for (Family c : cf.getAllFamilies()) {
-            if (c.getCount() > number) {
+            if (c.countFamily() > number) {
                 familyList.add(c);
             }
         }
@@ -49,7 +48,7 @@ public class FamilyService {
     public List<Family> getFamiliesLessThan(int number) {
         List<Family> familyList = new ArrayList<>();
         for (Family c : cf.getAllFamilies()) {
-            if (c.getCount() < number) {
+            if (c.countFamily() < number) {
                 familyList.add(c);
             }
         }

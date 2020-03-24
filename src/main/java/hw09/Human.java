@@ -72,7 +72,6 @@ public class Human {
 
     public void greetPet(){
             System.out.printf("Hello %s\n", family.getPet().iterator().next().getNickname());
-        //System.out.println(Arrays.toString(schedule));
     }
 
     public void describePet(){

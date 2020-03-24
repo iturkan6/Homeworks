@@ -2,13 +2,16 @@ package hw10;
 
 
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
 public class FamilyService {
-    FamilyDAO<Family> cf = new CollectionFamilyDAO();
+    private FamilyDAO<Family> cf = new CollectionFamilyDAO();
 
     public void createNewFamily(Human mother, Human father){
         cf.saveFamily(new Family(mother, father));
@@ -31,7 +34,6 @@ public class FamilyService {
     }
 
     public void adoptChild(Family family, Human child) {
-//        cf.getAllFamilies().iterator().next().addChild(child);
         int index = cf.getAllFamilies().indexOf(family);
         cf.getFamilyByIndex(index).getChildren().add(child);
     }
@@ -43,7 +45,7 @@ public class FamilyService {
     public List<Family> getFamiliesBiggerThan(int number) {
         List<Family> familyList = new ArrayList<>();
         for (Family c : cf.getAllFamilies()) {
-            if (c.getCount() > number) {
+            if (c.countFamily() > number) {
                 familyList.add(c);
             }
         }
@@ -52,7 +54,7 @@ public class FamilyService {
     public List<Family> getFamiliesLessThan(int number) {
         List<Family> familyList = new ArrayList<>();
         for (Family c : cf.getAllFamilies()) {
-            if (c.getCount() < number) {
+            if (c.countFamily() < number) {
                 familyList.add(c);
             }
         }
@@ -80,10 +82,9 @@ public class FamilyService {
         return cf.getFamilyByIndex(index).getPet();
     }
     public void deleteAllChildrenOlderThen(int number) {
-//        for (Family family: cf.getAllFamilies()) {
-//            List<Human> children = family.getChildren();
-//            children.removeIf(c -> c.getYear() > number);
-//            cf.saveFamily(family);
-//        }
-    }
+        cf.getAllFamilies().forEach(family -> family.getChildren().removeIf(ch ->
+                (LocalDateTime.now().getYear() - Instant.ofEpochMilli(ch.birthDate)
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDateTime().getYear()) > number));
+        }
 }

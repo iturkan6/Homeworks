@@ -2,8 +2,8 @@ package hw10;
 
 import java.util.HashSet;
 
-public class FamilyController extends FamilyService {
-    FamilyService fs = new FamilyService();
+public class FamilyController{
+    private FamilyService fs = new FamilyService();
 
     public void createNewFamily(Human mother, Human father) {
         fs.createNewFamily(mother, father);
@@ -25,27 +25,39 @@ public class FamilyController extends FamilyService {
         fs.adoptChild(family, child);
     }
 
-    public int count() {
-        return fs.count();
+    public void displayCountOfFamily(){
+        System.out.println(fs.count());
     }
 
-    public void getFamiliesBiggerThanNumber(int number) {
-        System.out.println(fs.getFamiliesBiggerThan(number));
+    public void displayFamiliesBiggerThan(int number) {
+        StringBuilder sb = new StringBuilder();
+        for (Family c : fs.getFamiliesBiggerThan(number)){
+            sb.append(c);
+        }
+        System.out.println(sb.toString());
     }
 
-    public void getFamiliesLessThanNumber(int number) {
-        System.out.println(fs.getFamiliesLessThan(number));
+    public void displayFamiliesLessThan(int number) {
+        StringBuilder sb = new StringBuilder();
+        for (Family c : fs.getFamiliesLessThan(number)){
+            sb.append(c);
+        }
+        System.out.println(sb.toString());
     }
 
-    public int countFamiliesWithMemberNumber(int number) {
-        return fs.countFamiliesWithMemberNumber(number);
+    public void displayCountFamiliesWithMemberNumber(int number) {
+        System.out.println(fs.countFamiliesWithMemberNumber(number));
     }
 
     public Family getFamilyById(int index) {
         return fs.getFamilyById(index);
     }
 
-    public void getPetByIndex(int index) {
+    public void displayFamilyById(int index){
+        System.out.println(fs.getFamilyById(index));
+    }
+
+    public void displayPetByIndex(int index){
         System.out.println(fs.getPet(index));
     }
 
@@ -53,11 +65,12 @@ public class FamilyController extends FamilyService {
         fs.addPet(index, pet);
     }
 
-    public HashSet<Pet> getPets(int index) {
-        return fs.getPets(index);
+    public void displayPets(int index){
+        System.out.println(fs.getPets(index));
     }
 
     public void deleteAllChildrenOlderThen(int number) {
         fs.deleteAllChildrenOlderThen(number);
     }
+
 }

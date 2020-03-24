@@ -9,7 +9,7 @@ import java.util.HashSet;
 public class Main {
     public static void main(String[] args) {
 
-        HashMap<DayOfWeek, String> schedule = new HashMap<DayOfWeek, String>();
+        HashMap<DayOfWeek, String> schedule = new HashMap<>();
         schedule.put( DayOfWeek.Sunday, "do homework");
         schedule.put(DayOfWeek.Monday, "go to course");
         schedule.put(DayOfWeek.Tuesday, "go to academy");
@@ -24,7 +24,7 @@ public class Main {
 
         Human ch = new Human("Bob", "Smith", 2, 15, schedule);
         Family smith = new Family(new Human("Marry", "Smith", 27, 100),
-                new Human("Rob", "Smith", 27, 100), new ArrayList<Human>(), PET);
+                new Human("Rob", "Smith", 27, 100), new ArrayList<>(), PET);
         Human Carl = new Human("Carl", "Ivanov", 13, 70);
 
         smith.addChild(ch);
@@ -47,22 +47,23 @@ public class Main {
                 new Human("Mickey", "Mouse", 25, 100));
         fc.bornChild(fc.getFamilyById(0), "Manie", "Michael");
         fc.addPet(0, new RoboCat("Spike", 5, 99, new HashSet<>(Arrays.asList("Sleep", "Eat"))));
-        System.out.println(fc.getFamilyById(0));
+        fc.displayFamilyById(0);
         fc.createNewFamily(new Human("Katya", "Ivanova", 30, 58),
                 new Human("Petya", "Ivanov", 35, 70));
         fc.bornChild(fc.getFamilyById(1), "Ira", "Ivan");
-        System.out.println(fc.getFamilyById(1));
+        fc.displayFamilyById(1);
         fc.adoptChild(fc.getFamilyById(0), Carl );
-        System.out.println(fc.getFamilyById(1));
-        System.out.println(fc.countFamiliesWithMemberNumber(3));
-        fc.getFamiliesBiggerThan(3);
-        fc.getFamiliesLessThan(4);
+        fc.displayFamilyById(1);
+        fc.displayCountFamiliesWithMemberNumber(3);
+        fc.displayFamiliesBiggerThan(3);
+        fc.displayFamiliesLessThan(4);
         fc.addPet(1, new DomesticCat("Murzik", 7, 30, null));
-        System.out.println(fc.getFamilyById(1));
-        System.out.println(fc.getPets(0));
+        fc.displayFamilyById(1);
+        fc.displayPets(0);
         fc.deleteFamilyByIndex(1);
         fc.displayAllFamilies();
-
+        fc.displayCountOfFamily();
+        fc.displayPetByIndex(0);
     }
 
 }

@@ -4,7 +4,10 @@ package hw10;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 public class Human {
@@ -88,7 +91,6 @@ public class Human {
 
     public void greetPet(){
             System.out.printf("Hello %s\n", family.getPet().iterator().next().getNickname());
-        //System.out.println(Arrays.toString(schedule));
     }
 
     public void describePet(){
@@ -110,7 +112,13 @@ public class Human {
     }
 
     public void describeAge(){
-
+        int days = LocalDateTime.now().getDayOfMonth() - Instant.ofEpochMilli(birthDate).
+                atZone(ZoneId.systemDefault()).toLocalDateTime().getDayOfMonth();
+        int moths = LocalDateTime.now().getMonthValue() - Instant.ofEpochMilli(birthDate).
+                atZone(ZoneId.systemDefault()).toLocalDateTime().getMonthValue();
+        int years = LocalDateTime.now().getYear() - Instant.ofEpochMilli(birthDate).
+                atZone(ZoneId.systemDefault()).toLocalDateTime().getYear();
+        System.out.printf("Human %s is %d days %d moths %d years old\n",name, days, moths, years);
     }
 
     @Override
