@@ -1,11 +1,15 @@
-package hw11;
+package hw12;
 
 
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -18,8 +22,13 @@ public class FamilyService {
         cf.saveFamily(new Family(mother, father));
     }
 
-    public String displayAllFam(){
-        return cf.getAllFamilies().stream().map(String::valueOf).collect(Collectors.joining());
+    public String getAllFamilies(){
+        StringBuilder sb = new StringBuilder();
+        for (Family family : cf.getAllFamilies()) {
+            String prettyFormat = family.prettyFormat();
+            sb.append(prettyFormat);
+        }
+        return sb.toString();
     }
 
 
@@ -27,19 +36,21 @@ public class FamilyService {
         cf.deleteFamily(index);
     }
 
-    public void bornChild(Family family, String girlName, String boyName) {
+    public void bornChild(Family family, String girlName, String boyName) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Random random = new Random();
         int c = random.nextInt(2);
         if (c == 0) {
-            family.addChild(new Human(boyName, family.getFather().getSurname(), "21/03/2020", 0));
+            family.addChild(new Human(boyName, family.getFather().getSurname(), LocalDateTime.now().
+                    toLocalDate().format(formatter), 0));
         } else if (c == 1) {
-            family.addChild(new Human(girlName, family.getMother().getSurname(), "21/03/2020", 0));
+            family.addChild(new Human(girlName, family.getMother().getSurname(), LocalDateTime.now().
+                    toLocalDate().format(formatter), 0));
         }
     }
 
     public void adoptChild(Family family, Human child) {
-        int index = cf.getAllFamilies().indexOf(family);
-        cf.getFamilyByIndex(index).getChildren().add(child);
+        cf.getFamilyByIndex(cf.getAllFamilies().indexOf(family)).addChild(child);
     }
 
     public int count (){
@@ -47,10 +58,22 @@ public class FamilyService {
     }
 
     public List<Family> getFamiliesBiggerThan(int number) {
-        return cf.getAllFamilies().stream().filter(c -> c.getCount() > number).collect(Collectors.toList());
+        List<Family> list = new ArrayList<>();
+        for (Family c : cf.getAllFamilies()) {
+            if (c.countFamily() > number) {
+                list.add(c);
+            }
+        }
+        return list;
     }
     public List<Family> getFamiliesLessThan(int number) {
-        return cf.getAllFamilies().stream().filter(c -> c.getCount() < number).collect(Collectors.toList());
+        List<Family> list = new ArrayList<>();
+        for (Family c : cf.getAllFamilies()) {
+            if (c.countFamily() < number) {
+                list.add(c);
+            }
+        }
+        return list;
     }
     public int countFamiliesWithMemberNumber(int number) {
         return (int) cf.getAllFamilies().stream().filter(c -> c.countFamily() == number).count();
@@ -69,7 +92,7 @@ public class FamilyService {
     }
     public void deleteAllChildrenOlderThen(int number) {
         cf.getAllFamilies().forEach(family -> family.getChildren().removeIf(ch ->
-                (LocalDateTime.now().getYear() - Instant.ofEpochMilli(ch.birthDate)
+                (LocalDateTime.now().getYear() - Instant.ofEpochMilli(ch.getBirthDate())
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime().getYear()) > number));
    }
