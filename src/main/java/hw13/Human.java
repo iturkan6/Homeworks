@@ -1,4 +1,4 @@
-package hw12;
+package hw13;
 
 
 import java.text.DateFormat;
@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
@@ -24,13 +23,9 @@ public class Human {
     public Human(String name, String surname, String birthDate, int iq) throws ParseException {
         this.name = name;
         this.surname = surname;
-//        try {
             DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             Date date = format.parse(birthDate);
             this.birthDate = date.getTime();
-//        } catch (ParseException ex) {
-//            System.out.println("Wrong format");
-//        }
         this.iq = iq;
     }
     public Human(String name, String surname, String birthDate, int iq, HashMap <DayOfWeek, String> schedule){
@@ -111,7 +106,7 @@ public class Human {
     public String toString() {
         DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
         String form = date.format(birthDate);
-        return String.format("Human {name = %s, birth day = %s, iq = %d, schedule = %s }",
+        return String.format("Human {name = |%s| birth day = |%s| iq = |%d| schedule = |%s| }",
                 name, form, iq, schedule);
     }
 
@@ -143,8 +138,13 @@ public class Human {
     public String prettyFormat(){
         DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
         String form = date.format(birthDate);
-        return String.format("            Human {name = %s, birth day = %s, iq = %d, schedule = %s }\n",
-                name, form, iq, schedule);
+        return String.format("Human: {name = %s, surname = %s, birth day = %s, iq = %d, schedule = %s }",
+                name, surname, form, iq, schedule);
     }
-
+    public String toDBFormat() {
+        DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        String form = date.format(birthDate);
+        return String.format("%s:%s:%s:%d:%s:",
+                name, surname, form, iq, schedule);
+    }
 }
