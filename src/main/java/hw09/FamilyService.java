@@ -76,10 +76,10 @@ public class FamilyService {
         return cf.getFamilyByIndex(index).getPet();
     }
     public void deleteAllChildrenOlderThen(int number) {
-        for (Family family: cf.getAllFamilies()) {
+        cf.getAllFamilies().forEach(family -> {
             List<Human> children = family.getChildren();
             children.removeIf(c -> c.getYear() > number);
             cf.saveFamily(family);
-        }
+        });
     }
 }

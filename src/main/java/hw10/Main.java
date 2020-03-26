@@ -7,7 +7,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws ParseException {
 
-        HashMap<DayOfWeek, String> schedule = new HashMap<DayOfWeek, String>();
+        HashMap<DayOfWeek, String> schedule = new HashMap<>();
         schedule.put( DayOfWeek.Sunday, "do homework");
         schedule.put(DayOfWeek.Monday, "go to course");
         schedule.put(DayOfWeek.Tuesday, "go to academy");
@@ -61,7 +61,7 @@ public class Main {
         fc.deleteFamilyByIndex(1);
         fc.displayAllFamilies();
         fc.deleteAllChildrenOlderThen(3);
-        fc.getFamilyById(0).getFather().describeAge();
+        System.out.println(fc.getFamilyById(0).getFather().describeAge());
         fc.displayCountOfFamily();
         fc.displayPetByIndex(0);
     }

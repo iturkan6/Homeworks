@@ -4,10 +4,8 @@ package hw10;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Human {
@@ -111,14 +109,11 @@ public class Human {
                 name, form, iq, schedule);
     }
 
-    public void describeAge(){
-        int days = LocalDateTime.now().getDayOfMonth() - Instant.ofEpochMilli(birthDate).
-                atZone(ZoneId.systemDefault()).toLocalDateTime().getDayOfMonth();
-        int moths = LocalDateTime.now().getMonthValue() - Instant.ofEpochMilli(birthDate).
-                atZone(ZoneId.systemDefault()).toLocalDateTime().getMonthValue();
-        int years = LocalDateTime.now().getYear() - Instant.ofEpochMilli(birthDate).
-                atZone(ZoneId.systemDefault()).toLocalDateTime().getYear();
-        System.out.printf("Human %s is %d days %d moths %d years old\n",name, days, moths, years);
+    public String describeAge(){
+        Period date = Period.between(Instant.ofEpochMilli(birthDate).
+                atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
+        return String.format("%s %s is %d years, %d months, %d days old", name, surname,
+                date.getYears(), date.getMonths(), date.getDays());
     }
 
     @Override
